@@ -1,0 +1,6 @@
+tests/img/test1.png
+4
+tests/img/test1-1.png out1-1.png
+tests/img/test1-2.png out1-2.png
+tests/img/test1-3.png out1-3.png
+tests/img/test1-4.png out1-4.png

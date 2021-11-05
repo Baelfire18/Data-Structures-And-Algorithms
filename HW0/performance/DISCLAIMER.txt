@@ -1,0 +1,2 @@
+Estos tests no traen solución debido que son muy pesadas.
+Además estos tests no son para verificar la correctitus de su programa sino que para comparar python y C.

@@ -1,0 +1,5 @@
+amarillo -Sospechoso(0):  Es contacto estrecho de alg ́un contagiado o de otro sospechoso.
+naranja  –Sospechoso en espera (1):  Es un sospechoso que realiza unTesty espera el resultado.
+rojo     –Contagiado (2):  Tiene unTestpositivo.
+verde    –Recuperado (3):  Es un contagiado que se recuper ́o.
+–No contagiado (4):  Tiene unTestnegativo

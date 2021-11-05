@@ -1,0 +1,19 @@
+tests/Easy/test_6.png
+17
+tests/Easy/test_6_0.png output/Easy/out_6_0.png
+tests/Easy/test_6_1.png output/Easy/out_6_1.png
+tests/Easy/test_6_2.png output/Easy/out_6_2.png
+tests/Easy/test_6_3.png output/Easy/out_6_3.png
+tests/Easy/test_6_4.png output/Easy/out_6_4.png
+tests/Easy/test_6_5.png output/Easy/out_6_5.png
+tests/Easy/test_6_6.png output/Easy/out_6_6.png
+tests/Easy/test_6_7.png output/Easy/out_6_7.png
+tests/Easy/test_6_8.png output/Easy/out_6_8.png
+tests/Easy/test_6_9.png output/Easy/out_6_9.png
+tests/Easy/test_6_10.png output/Easy/out_6_10.png
+tests/Easy/test_6_11.png output/Easy/out_6_11.png
+tests/Easy/test_6_12.png output/Easy/out_6_12.png
+tests/Easy/test_6_13.png output/Easy/out_6_13.png
+tests/Easy/test_6_14.png output/Easy/out_6_14.png
+tests/Easy/test_6_15.png output/Easy/out_6_15.png
+tests/Easy/test_6_16.png output/Easy/out_6_16.png

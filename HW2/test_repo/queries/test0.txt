@@ -1,0 +1,4 @@
+test_repo/img/test0.png
+2
+test_repo/img/test0-1.png out0-1.png
+test_repo/img/test0-2.png out0-2.png
