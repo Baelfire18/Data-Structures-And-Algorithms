@@ -18,14 +18,12 @@ Person* person_init(int id, int state) {
   return person;
 }
 
-void person_print(Person* persona) {
-  printf("Hola %i %i", persona->id, persona->state);
+void person_print(Person* person) {
+  printf("Hello %i %i", person->id, person->state);
 }
 
 Person* person_append_contact(Person* person, int other_id, int state) {
-  // Creamos el nuevo nodo
   Person* new_person = person_init(other_id, state);
-
   if (!person->head) {
     person->head = new_person;
   }
@@ -35,7 +33,6 @@ Person* person_append_contact(Person* person, int other_id, int state) {
   }
   person->tail = new_person;
   new_person->parent = person;
-  // Lo agregamos como el nodo siguiente al ultimo nodo de la lista
   return new_person;
 }
 
@@ -51,7 +48,7 @@ Person* person_search_contact(Person* person, int id) {
 }
 
 void person_recursive_inform(Person* person, int depth, FILE* output_file) {
-  for (int i = 0; i < depth*4; i+=1) {
+  for (int i = 0; i < depth*4; i ++) {
     fprintf(output_file," ");
   }
   fprintf(output_file, "%i:%i\n", person->id, person->state);
@@ -63,15 +60,11 @@ void person_recursive_inform(Person* person, int depth, FILE* output_file) {
 }
 
 void person_delete(Person* person) {
-  // printf("Estoy borrachooooo a %i\n", person->id);
   if (person->head) {
     person_delete(person->head);
   }
   if (person->next) {
     person_delete(person->next);
   }
-  // if (person != NULL)
-  // {printf("Estoy borrando a %i\n", person->id);}
   free(person);
-  // printf("----\n");
 }

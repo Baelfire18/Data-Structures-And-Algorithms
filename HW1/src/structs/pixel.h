@@ -3,8 +3,8 @@
 typedef struct pixel {
   int color;
   int pos;
-  int asignado;
-  struct nodo* nodo;
+  int assigned;
+  struct node* node;
   struct pixel* left;
   struct pixel* right;
   struct pixel* down;
@@ -13,5 +13,6 @@ typedef struct pixel {
   struct pixel* next;
 } Pixel;
 
+
 Pixel* pixel_init(int color, int pos);
-void pixels_delete(Pixel** pixel, int size);
+void delete_pixels(Pixel** pixel, int size);

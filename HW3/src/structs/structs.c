@@ -37,12 +37,13 @@ void Union(Subset subsets[], int x, int y) {
   // rank tree (Union by Rank)
   if (subsets[xroot].rank < subsets[yroot].rank) {
     subsets[xroot].parent = yroot;
-  } else if (subsets[xroot].rank > subsets[yroot].rank) {
+  }
+  else if (subsets[xroot].rank > subsets[yroot].rank) {
     subsets[yroot].parent = xroot;
- 
   // If ranks are same, then make one as root and
   // increment its rank by one
-  } else {
+  } 
+  else {
     subsets[yroot].parent = xroot;
     subsets[xroot].rank++;
   }

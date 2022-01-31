@@ -3,9 +3,9 @@
 typedef struct person {
   int id;
   int state;
-  struct person* parent; // de quien te contagiaste
-  struct person* head; // a quien contagiaste primero
-  struct person* tail; // a quien contagiaste de último
+  struct person* parent; // from who you got contagiated
+  struct person* head; // who did you first contagious
+  struct person* tail; // who did you last contagious
   struct person* prev; 
   struct person* next;
 } Person;

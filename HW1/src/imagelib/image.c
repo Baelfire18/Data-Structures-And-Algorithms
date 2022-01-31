@@ -1,5 +1,5 @@
 /*
-* Basado en código de ejemplo para libpng
+* Based in the example code in libpng
 * https://gist.github.com/niw/5963798
 */
 #include "image.h"
@@ -10,7 +10,7 @@
 #include <png.h>
 #include <math.h>
 
-/** Lee un archivo .png y entrega la imagen */
+/** Reads a .png file and returns the image */
 Image* img_png_read_from_file (char* filename) {
   Image* img = malloc(sizeof(Image));
 
@@ -28,10 +28,10 @@ Image* img_png_read_from_file (char* filename) {
 
   png_read_info(png, info);
 
-  int width        = png_get_image_width(png, info);
-  int height       = png_get_image_height(png, info);
+  int width = png_get_image_width(png, info);
+  int height = png_get_image_height(png, info);
   uint8_t color_type = png_get_color_type(png, info);
-  uint8_t bit_depth  = png_get_bit_depth(png, info);
+  uint8_t bit_depth = png_get_bit_depth(png, info);
 
   // Save image info
   img -> width = width;
@@ -89,7 +89,7 @@ Image* img_png_read_from_file (char* filename) {
   return img;
 }
 
-/** Escribe el contenido de una imagen como archivo .png */
+/** Writes the image content as .png */
 void img_png_write_to_file(Image* img, char* filename) {
   FILE *fp = fopen(filename, "wb");
   if(!fp) abort();
@@ -143,7 +143,7 @@ void img_png_write_to_file(Image* img, char* filename) {
 }
 
 
-/** Libera los recursos asociados a la imagen */
+/** Frees memory */
 void img_png_destroy(Image* img) {
   free(img -> pixels);
   free(img);

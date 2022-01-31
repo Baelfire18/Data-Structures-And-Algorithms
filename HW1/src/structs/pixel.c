@@ -9,7 +9,7 @@ Pixel* pixel_init(int color, int pos) {
   *pixel = (Pixel) {
     .color = color,
     .pos = pos,
-    .asignado = 0,
+    .assigned = 0,
     .left = NULL,
     .right = NULL,
     .down = NULL,
@@ -20,8 +20,7 @@ Pixel* pixel_init(int color, int pos) {
   return pixel;
 }
 
-void pixels_delete(Pixel** pixels, int size)
-{
+void delete_pixels(Pixel** pixels, int size) {
   for (int i=0; i < size; i++) {
     free(pixels[i]);
   }

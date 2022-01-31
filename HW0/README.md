@@ -28,7 +28,7 @@ and ejecuted using:
 ## Examples
 
 For python:
-```python3 ./python/main.py tests/test.txt out.txt```
+```python3 ./python/main.py tests/test.txt outpy.txt```
 
 For C:
 ```./kevin-21 tests/test.txt out.txt```
