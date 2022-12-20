@@ -1,14 +1,14 @@
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+
 #include "../imagelib/image.h"
 #include "../structs/node.h"
 #include "../structs/pixel.h"
 
-
 int main(int argc, char** argv) {
   // We review the arguments
-  if(argc < 4) {
+  if (argc < 4) {
     printf("Mode of use: %s <input.png> <output.png> <command> [args]\n", argv[0]);
     return 1;
   }
@@ -27,7 +27,7 @@ int main(int argc, char** argv) {
   // Here we assing the borders of each pixel
   for (int i = 0; i < image->pixel_count; i++) {
     // We assign the right side
-    if ( (i+1) % image->width) {
+    if ((i + 1) % image->width) {
       master_list[i]->right = master_list[i + 1];
     }
     // We assign the bottom side
@@ -35,7 +35,7 @@ int main(int argc, char** argv) {
       master_list[i]->down = master_list[i + image->width];
     }
     // We assign the left side
-    if ( (i) % image->width) {
+    if ((i) % image->width) {
       master_list[i]->left = master_list[i - 1];
     }
     // We assign the top side
@@ -53,22 +53,20 @@ int main(int argc, char** argv) {
 
   // We create a new image the same size for the output
   Image* new_img = calloc(1, sizeof(Image));
-  *new_img = (Image) {
+  *new_img = (Image){
       .height = image->height,
       .width = image->width,
       .pixel_count = image->pixel_count,
-      .pixels = calloc(image->pixel_count, sizeof(int))
-  };
+      .pixels = calloc(image->pixel_count, sizeof(int))};
 
   // We filter the tree and save it in an image, acording to each filter
-  if (! strcmp("delta", argv[3])) {
+  if (!strcmp("delta", argv[3])) {
     // Filtro DELTA
     float max_delta = atof(argv[4]);
 
     /* Here we implement delta filter    */
     delta_filter(parent_node, max_delta);
-  }
-  else if (! strcmp("area", argv[3])) {
+  } else if (!strcmp("area", argv[3])) {
     // Filtro AREA-COLOR
     int min_area = atoi(argv[4]);
     int threshold = atoi(argv[5]);
@@ -77,7 +75,7 @@ int main(int argc, char** argv) {
     area_filter(parent_node, min_area, threshold);
   }
 
-  for (int i = 0; i< image->pixel_count; i++) {
+  for (int i = 0; i < image->pixel_count; i++) {
     new_img->pixels[i] = master_list[i]->color;
   }
 

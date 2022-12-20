@@ -9,7 +9,7 @@ typedef struct pixel {
   struct pixel* right;
   struct pixel* down;
   struct pixel* up;
-  struct pixel* prev; 
+  struct pixel* prev;
   struct pixel* next;
 } Pixel;
 
@@ -23,10 +23,8 @@ typedef struct subimage {
   struct subimage* last;
 } SubImage;
 
-
-
 Pixel* pixel_init(int color, int pos);
 SubImage* subimage_init(int large, Pixel* pixel, int black, int pos);
-void pixels_delete(Pixel** pixels, int size);
+void delete_pixels(Pixel** pixels, int size);
 void sub_image_delete(SubImage* subimage);
-int blacks (Pixel** lista, int origen, int n, int largo, int ancho);
+int blacks(Pixel** lista, int origen, int n, int largo, int ancho);

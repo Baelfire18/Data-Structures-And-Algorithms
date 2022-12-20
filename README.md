@@ -1,6 +1,6 @@
 # Data-Structures-And-Algorithms
 
-This are the homeworks of [Jose Antonio Castro](https://github.com/Baelfire18) from Data Structures and Algorithms course ([IIC2133](https://github.com/IIC2133-PUC/)) in Pontificia Universidad Catlica de Chile.
+This are the homeworks of [Jose Antonio Castro](https://github.com/Baelfire18) from Data Structures and Algorithms course ([IIC2133](https://github.com/IIC2133-PUC/)) in Pontificia Universidad Catlica de Chile in the semester 2021-1.
 
 | Homework | Content |
 | --- | --- |

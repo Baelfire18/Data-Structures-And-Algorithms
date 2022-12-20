@@ -1,5 +1,7 @@
 #pragma once
 
+#include <stdio.h>
+
 // a structure to represent a weighted edge in graph
 typedef struct edge {
   int src, dest, weight, id;
@@ -10,7 +12,7 @@ typedef struct edge {
 typedef struct graph {
   // V-> Number of vertices, E-> Number of edges
   int V, E;
- 
+
   // graph is represented as an array of edges.
   // Since the graph is undirected, the edge
   // from src to dest is also edge from dest

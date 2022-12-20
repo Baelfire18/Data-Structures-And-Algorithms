@@ -1,19 +1,20 @@
+#include "persons.h"
+
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdbool.h>
-#include "persons.h"
 
 Person* person_init(int id, int state) {
   Person* person = malloc(sizeof(Person));
-  *person = (Person) {
-    .id = id,
-    .state = state,
-    .parent = NULL,
-    .head = NULL,
-    .tail = NULL,
-    .prev = NULL,
-    .next = NULL,
+  *person = (Person){
+      .id = id,
+      .state = state,
+      .parent = NULL,
+      .head = NULL,
+      .tail = NULL,
+      .prev = NULL,
+      .next = NULL,
   };
   return person;
 }
@@ -26,8 +27,7 @@ Person* person_append_contact(Person* person, int other_id, int state) {
   Person* new_person = person_init(other_id, state);
   if (!person->head) {
     person->head = new_person;
-  }
-  else {
+  } else {
     new_person->prev = person->tail;
     person->tail->next = new_person;
   }
@@ -48,8 +48,8 @@ Person* person_search_contact(Person* person, int id) {
 }
 
 void person_recursive_inform(Person* person, int depth, FILE* output_file) {
-  for (int i = 0; i < depth*4; i ++) {
-    fprintf(output_file," ");
+  for (int i = 0; i < depth * 4; i++) {
+    fprintf(output_file, " ");
   }
   fprintf(output_file, "%i:%i\n", person->id, person->state);
   Person* current = person->head;

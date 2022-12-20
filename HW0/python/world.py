@@ -3,21 +3,19 @@ from person import Person
 
 
 class World:
-
     def __init__(self, n_countries):
         self.n_countries = n_countries
         # Número de regiones por país
         self.n_regions_countries = [0 for _ in range(n_countries)]
         # Cada país
         self.countries = [None for _ in range(n_countries)]
-        # Arreglo para guardar numero de personas 
+        # Arreglo para guardar numero de personas
         self.people_count = [[] for _ in range(n_countries)]
-            
-    
+
     def create_region(self, idx: int, amount: int) -> None:
-        '''
+        """
         Funcion que define la lista de regiones por país
-        '''
+        """
         self.n_regions_countries[idx] = amount
 
         # cada región empieza con un contacto contagiado
@@ -32,22 +30,29 @@ class World:
         for idx in range(depth):
             person = person.search_contact(route[idx])
         return person
-    
+
     def add_contact(self, person, new_id: int):
         """
         Crea una nueva persona con id new_id como nodo hijo de person
         """
-        # si el nodo padre está contagiado (2) el estado es sospechoso en espera (1), 
+        # si el nodo padre está contagiado (2) el estado es sospechoso en espera (1),
         # en otro caso es sospechoso (0)
         if person.state == 2:
             state = 1
         else:
             state = 0
-        
+
         person.append_contact(new_id, state)
         return person
-    
-    def add_contacts(self, country_idx: int, region_idx: int, depth: int, route: List, n_contacts: int) -> None:
+
+    def add_contacts(
+        self,
+        country_idx: int,
+        region_idx: int,
+        depth: int,
+        route: List,
+        n_contacts: int,
+    ) -> None:
         """
         Agrega los contactos estrechos de la persona encontrada con la ruta
         """

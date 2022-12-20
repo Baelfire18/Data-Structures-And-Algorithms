@@ -1,8 +1,9 @@
+#include <math.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdbool.h>
-#include <math.h>
+
 #include "../structs/worlds.h"
 
 /* Retorn true if both are equal */
@@ -36,17 +37,17 @@ int main(int argc, char **argv) {
   FILE *output_file = fopen(argv[2], "w");
 
   char command[32];
-  
+
   /* We read the total of countries */
   int n_countries;
   fscanf(input_file, "%d", &n_countries);
 
   /* We generate our world */
-  World* world = world_init(n_countries);
+  World *world = world_init(n_countries);
 
   /* We read the number of regiosn per country */
   int n_regions;
-  for (int cty = 0; cty < n_countries; cty ++) {
+  for (int cty = 0; cty < n_countries; cty++) {
     fscanf(input_file, "%d", &n_regions);
     /* We populate the country with regions */
     world_create_region(world, cty, n_regions);
@@ -56,9 +57,9 @@ int main(int argc, char **argv) {
   int n_lines;
   fscanf(input_file, "%d", &n_lines);
 
-  /* We declare variables to save: 
+  /* We declare variables to save:
     - Country ID.
-    - Region ID. 
+    - Region ID.
     - Depth.
     - Contact ID for routes.
     - Number of contacts.
@@ -80,7 +81,7 @@ int main(int argc, char **argv) {
     /* We get the country, region, and depth */
     fscanf(input_file, "%d", &country_id);
     fscanf(input_file, "%d", &region_id);
-    
+
     /* POSITIVE */
     if (string_equals(command, "ADD_CONTACTS")) {
       fscanf(input_file, "%d", &depth);
@@ -94,8 +95,7 @@ int main(int argc, char **argv) {
       fscanf(input_file, "%d", &n_contacts);
       world_add_contacts(world, country_id, region_id, depth, route, n_contacts);
 
-    }
-    else if (string_equals(command, "POSITIVE")) {
+    } else if (string_equals(command, "POSITIVE")) {
       fscanf(input_file, "%d", &depth);
       // Get routes from file
       int route[depth];
@@ -105,8 +105,7 @@ int main(int argc, char **argv) {
       }
       positive(world, country_id, region_id, depth, route);
 
-    }
-    else if (string_equals(command, "NEGATIVE")) {
+    } else if (string_equals(command, "NEGATIVE")) {
       fscanf(input_file, "%d", &depth);
       // Get routes from file
       int route[depth];
@@ -116,8 +115,7 @@ int main(int argc, char **argv) {
       }
       negative(world, country_id, region_id, depth, route);
 
-    }
-    else if (string_equals(command, "RECOVERED")) {
+    } else if (string_equals(command, "RECOVERED")) {
       fscanf(input_file, "%d", &depth);
       // Get routes from file
       int route[depth];
@@ -126,8 +124,7 @@ int main(int argc, char **argv) {
         route[r] = contact_id;
       }
       recovered(world, country_id, region_id, depth, route);
-    }
-    else if (string_equals(command, "CORRECT")) {
+    } else if (string_equals(command, "CORRECT")) {
       fscanf(input_file, "%d", &depth);
       // Get first route from file
       int route_1[depth];
@@ -141,14 +138,12 @@ int main(int argc, char **argv) {
       for (int r = 0; r < depth_2; r++) {
         fscanf(input_file, "%d", &contact_id);
         route_2[r] = contact_id;
-      }  
+      }
       correct(world, country_id, region_id, depth, route_1, depth_2, route_2);
-    }
-    else if (string_equals(command, "INFORM")) {
+    } else if (string_equals(command, "INFORM")) {
       fprintf(output_file, "INFORM %d %d\n", country_id, region_id);
-      world_inform(world, country_id, region_id, output_file); 
-    }
-    else if (string_equals(command, "STATISTICS")) {
+      world_inform(world, country_id, region_id, output_file);
+    } else if (string_equals(command, "STATISTICS")) {
       fprintf(output_file, "STATISTICS %d %d\n", country_id, region_id);
       int master[4] = {0, 0, 0, 0};
       statistics(world->countries[country_id][region_id], output_file, master);
@@ -156,8 +151,8 @@ int main(int argc, char **argv) {
   }
 
   int count = 0;
-  for (int i = 0; i < world->n_countries; i ++) {
-    for (int j = 0; j < world->n_regions_countries[i]; j ++) {
+  for (int i = 0; i < world->n_countries; i++) {
+    for (int j = 0; j < world->n_regions_countries[i]; j++) {
       count += 1;
       person_delete(world->countries[i][j]);
     }

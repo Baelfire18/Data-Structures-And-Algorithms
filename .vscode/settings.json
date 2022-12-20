@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "process.h": "c"
+    },
+    // "editor.formatOnSave": true, // Linea opcional: Permite ajustar el codigo automaticamente al guardar
+    "C_Cpp.clang_format_fallbackStyle": "Google",
+    "C_Cpp.clang_format_style": "{ BasedOnStyle: Google, IndentWidth: 2, ColumnLimit: 0, IndentCaseLabels: false, TabWidth: 2, SpacesBeforeTrailingComments: 3, BreakBeforeBraces: Custom, BraceWrapping: { BeforeElse: false } }"
+}

@@ -1,10 +1,12 @@
 from PIL import Image
+
 # pip install pillow
 import sys
+
 # input:
 # python check.py <difficulty> <test_id>
 
-# puedes agregar el flag -i para que 
+# puedes agregar el flag -i para que
 # solo se impriman los tests fallidos
 
 
@@ -18,8 +20,9 @@ def check_dif(route_1, route_2):
     else:
         return False
 
+
 n_querys = {}
-for i in range (1, 7):
+for i in range(1, 7):
     n_querys[("Easy", i)] = 5 + 2 * i
     n_querys[("Medium", i)] = 100 + i * 30
     n_querys[("Hard", i)] = 220 + i * 30
@@ -47,8 +50,8 @@ counter = 0
 # cantidad total de querys
 total_querys = n_querys[(dif, int(test_id))]
 
-#imprimimos un mensaje de inicio
-print("");
+# imprimimos un mensaje de inicio
+print("")
 print(" ---------CHECKING-----------\n")
 
 # iteramos por las imagenes para ver si están correctas
@@ -63,7 +66,7 @@ for i in range(0, total_querys):
             blank_space = 13 - len(out_string)
             print(out_string + " " * blank_space + "C")
     else:
-        counter += 1;
+        counter += 1
         blank_space = 13 - len(out_string)
         print(out_string + " " * blank_space + "Incorrect")
 

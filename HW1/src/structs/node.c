@@ -1,21 +1,22 @@
+#include "node.h"
+
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdbool.h>
-#include "node.h"
 
 Node* node_init() {
   Node* node = malloc(sizeof(Node));
-  *node = (Node) {
-    .color = -300,
-    .size = 0,
-    .pixel_head = NULL,
-    .pixel_tail = NULL,
-    .parent = NULL,
-    .head = NULL,
-    .tail = NULL,
-    .prev = NULL,
-    .next = NULL,
+  *node = (Node){
+      .color = -300,
+      .size = 0,
+      .pixel_head = NULL,
+      .pixel_tail = NULL,
+      .parent = NULL,
+      .head = NULL,
+      .tail = NULL,
+      .prev = NULL,
+      .next = NULL,
   };
   return node;
 }
@@ -44,7 +45,7 @@ Node* create_parent_node(int threshold, Pixel** list, int lenght) {
   Node* node = node_init();
   add_pixels_to_parent(node, list, lenght, threshold);
   node->color = node->pixel_head->color;
-  node->size = lenght;  
+  node->size = lenght;
   populate(node, threshold);
   return node;
 }
@@ -55,8 +56,7 @@ void add_pixels_to_parent(Node* node, Pixel** list, int lenght, int threshold) {
       list[i]->assigned = 1;
       if (!node->pixel_head) {
         node->pixel_head = list[i];
-      }
-      else {
+      } else {
         list[i]->prev = node->pixel_tail;
         node->pixel_tail->next = list[i];
       }
@@ -93,7 +93,7 @@ void populate(Node* node, int threshold) {
 
   // We populate head children
   aux_node = node->head;
-  while(aux_node) {
+  while (aux_node) {
     populate(aux_node, aux_node->color);
     aux_node = aux_node->next;
   }
@@ -102,7 +102,7 @@ void populate(Node* node, int threshold) {
 int add(Pixel* pixel, int threshold) {
   if (pixel) {
     if (!pixel->assigned && pixel->color > threshold) {
-        return 1;
+      return 1;
     }
   }
   return 0;
@@ -114,8 +114,7 @@ void create_node(Node* parent, Pixel* pixel_inicial) {
   min_threshold_2(node);
   if (!parent->head) {
     parent->head = node;
-  } 
-  else {
+  } else {
     node->prev = parent->tail;
     parent->tail->next = node;
   }
@@ -130,8 +129,7 @@ void add_pixels(Node* node, Node* parent, Pixel* pixel) {
       pixel->assigned = 1;
       if (!node->pixel_head) {
         node->pixel_head = pixel;
-      }
-      else {
+      } else {
         pixel->prev = node->pixel_tail;
         node->pixel_tail->next = pixel;
       }
@@ -147,7 +145,7 @@ void add_pixels(Node* node, Node* parent, Pixel* pixel) {
 
 void min_threshold_2(Node* node) {
   Pixel* pixel = node->pixel_head;
-  int threshold = node->pixel_head->color; 
+  int threshold = node->pixel_head->color;
   // printf("threshold a superar es %i\n", threshold);
   while (pixel) {
     // printf("%i %i %i\n", pixel->pos, pixel->color, pixel->assigned);
@@ -187,12 +185,10 @@ void clear(Node* node) {
         if (node->pixel_head == pixel && node->pixel_tail != pixel) {
           node->pixel_head = pixel->next;
           pixel->next->prev = NULL;
-        }
-        else if (node->pixel_head != pixel && node->pixel_tail == pixel) {
+        } else if (node->pixel_head != pixel && node->pixel_tail == pixel) {
           node->pixel_tail = pixel->prev;
           pixel->prev->next = NULL;
-        }
-        else if (node->pixel_head != pixel && node->pixel_tail != pixel) {
+        } else if (node->pixel_head != pixel && node->pixel_tail != pixel) {
           Pixel* before = pixel->prev;
           Pixel* after = pixel->next;
           before->next = after;
@@ -212,7 +208,7 @@ void print_node(Node* node) {
   Pixel* pixel = node->pixel_head;
   while (pixel) {
     printf("%i %i %i\n", pixel->pos, pixel->color, pixel->assigned);
-    pixel= pixel->next;
+    pixel = pixel->next;
   }
 }
 
@@ -228,13 +224,13 @@ void delete_node(Node* node) {
 
 void genealogy(Node* node, int depth) {
   if (node) {
-    for (int i = 0; i < depth*6; i+=1) {
+    for (int i = 0; i < depth * 6; i += 1) {
       printf(" ");
     }
     printf("%i:%i\n", node->color, node->size);
   }
   if (node->head) {
-    genealogy(node->head, depth+1);
+    genealogy(node->head, depth + 1);
   }
   if (node->next) {
     genealogy(node->next, depth);
@@ -244,18 +240,17 @@ void genealogy(Node* node, int depth) {
 // Filters
 void area_filter(Node* node, int min_area, int threshold) {
   if (node) {
-    if (threshold >= node->color || min_area >= node->size ) {
+    if (threshold >= node->color || min_area >= node->size) {
       Pixel* pixel = node->pixel_head;
       while (pixel) {
         if (!node->parent) {
           pixel->color = 0;
           node->color = 0;
-        }
-        else {
+        } else {
           pixel->color = node->parent->color;
           node->color = node->parent->color;
         }
-        pixel = pixel->next; 
+        pixel = pixel->next;
       }
     }
     if (node->head) {
@@ -277,15 +272,14 @@ void delta_filter(Node* node, float max_delta) {
         pixel = pixel->next;
       }
       // printf("Macking the root black!\n");
-    }
-    else {
-      float delta = (float) (node->parent->size - node->size) / node->parent->size;
+    } else {
+      float delta = (float)(node->parent->size - node->size) / node->parent->size;
       if (delta >= max_delta) {
         // They get the condition
         Pixel* pixel = node->pixel_head;
         while (pixel) {
           pixel->color = node->parent->color;
-          pixel = pixel->next; 
+          pixel = pixel->next;
         }
         node->color = node->parent->color;
       }

@@ -8,10 +8,9 @@ typedef struct node {
   struct node* parent;
   struct node* head;
   struct node* tail;
-  struct node* prev; 
+  struct node* prev;
   struct node* next;
 } Node;
-
 
 Node* node_init();
 Pixel* search_for_first_pixel(Pixel** lista, int largo, int threshold);

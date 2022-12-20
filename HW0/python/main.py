@@ -14,11 +14,11 @@ def fscanf(string: str) -> Tuple[str, str]:
     a -> "hola"
     b -> "como estas"
     """
-    space = string.find(' ')
+    space = string.find(" ")
     if space == -1:
-        return string, ''
+        return string, ""
     else:
-        return string[:space], string[space+1:]
+        return string[:space], string[space + 1 :]
 
 
 def check_arguments(argc: int, argv: List[str]):
@@ -41,10 +41,10 @@ if __name__ == "__main__":
         sys.exit(1)
 
     # Abrimos el archivo de input
-    input_file = open(sys.argv[1], 'r')
+    input_file = open(sys.argv[1], "r")
 
     # Abrimos archivo de output
-    output_file = open(sys.argv[2], 'w')
+    output_file = open(sys.argv[2], "w")
 
     # Leemos la cantidad de paises y regiones
     countries, regions = fscanf(input_file.readline().strip())
@@ -88,11 +88,14 @@ if __name__ == "__main__":
                 person_id, line = fscanf(line)
                 route[r] = int(person_id)
             n_contacts, line = fscanf(line)
-            country_idx, region_idx, n_contacts = int(country_idx), int(region_idx), int(n_contacts)
+            country_idx, region_idx, n_contacts = (
+                int(country_idx),
+                int(region_idx),
+                int(n_contacts),
+            )
             # agregamos los contactos
             world.add_contacts(country_idx, region_idx, depth, route, n_contacts)
 
-        
         elif command == "INFORM":
             country_idx, line = fscanf(line)
             region_idx, line = fscanf(line)

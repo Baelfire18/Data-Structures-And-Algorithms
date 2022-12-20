@@ -4,8 +4,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 #include "../structs/structs.h"
- 
+
 // Driver program to test above functions
 int main(int argc, char** argv) {
   // We check arguments
@@ -14,9 +15,9 @@ int main(int argc, char** argv) {
     return 1;
   }
 
-  FILE *input_file = fopen(argv[1], "r");
-  FILE *output_file = fopen(argv[2], "w");
-  
+  FILE* input_file = fopen(argv[1], "r");
+  FILE* output_file = fopen(argv[2], "w");
+
   int clients;
   int centers;
   int roads;
@@ -24,8 +25,8 @@ int main(int argc, char** argv) {
   // printf("%d %d %d\n", clients, centers, roads);
 
   // Create graph
-  int V = clients + centers; // Number of vertices in graph
-  int E = roads + (centers - 1); // Number of edges in graph
+  int V = clients + centers;       // Number of vertices in graph
+  int E = roads + (centers - 1);   // Number of edges in graph
   Graph* graph = createGraph(V, E);
 
   // Crete roads
@@ -42,11 +43,11 @@ int main(int argc, char** argv) {
   }
 
   // We add roads that as 0 cost in the centers for Kruskal to work
-  for (int c = 0; c < centers -1; c++) {
+  for (int c = 0; c < centers - 1; c++) {
     graph->edge[roads + c].src = clients + c;
     graph->edge[roads + c].dest = clients + c + 1;
     graph->edge[roads + c].weight = 0;
-    graph->edge[roads + c].id = -c - 69; // Nice! (negative number)
+    graph->edge[roads + c].id = -c - 69;   // Nice! (negative number)
   }
 
   // We implement Kruscal algoritm
@@ -58,7 +59,7 @@ int main(int argc, char** argv) {
 
   // Free files
   fclose(input_file);
-  fclose(output_file);  
+  fclose(output_file);
 
   // Exit correctly
   return 0;

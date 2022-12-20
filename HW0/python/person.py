@@ -2,7 +2,6 @@ from typing import Tuple, List
 
 
 class Person:
-
     def __init__(self, _id: int, state: int) -> None:
         self._id = _id
         self.state = state
@@ -19,14 +18,14 @@ class Person:
         self._next = None
 
     def append_contact(self, other_id: int, state: int):
-        """ 
+        """
         Inserta una nueva persona como nodo hijo al final de la lista ligada
         """
-        
+
         # Nuevo nodo con id dado y padre self
         new = Person(other_id, state)
         new.parent = self
-        
+
         # insertar nodo al final de la lista
         if not self.head:
             self.head = new
@@ -38,8 +37,8 @@ class Person:
         return new
 
     def search_contact(self, _id: int):
-        """ 
-        Busca el nodo hijo con id dado 
+        """
+        Busca el nodo hijo con id dado
         """
         current = self.head
         while current:
@@ -47,11 +46,10 @@ class Person:
                 return current
             current = current._next
         return None
-    
+
     def recursive_inform(self, depth: int, output_file):
-        output_file.write("    "*depth + f"{self._id}:{self.state}\n")
+        output_file.write("    " * depth + f"{self._id}:{self.state}\n")
         current = self.head
         while current:
-             current.recursive_inform(depth + 1, output_file)
-             current = current._next
-        
+            current.recursive_inform(depth + 1, output_file)
+            current = current._next
