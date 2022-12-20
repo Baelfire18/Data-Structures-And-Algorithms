@@ -13,12 +13,8 @@ os.system("diff solutions/easy/test_3_delta_01.png output/easy/test_3_delta_01.p
 os.system("diff solutions/easy/test_4_area_18_30.png output/easy/test_4_area_18_30.png")
 os.system("diff solutions/easy/test_4_delta_001.png output/easy/test_4_delta_001.png")
 
-os.system(
-    "diff solutions/medium/monalisa_area_5_30.png output/medium/monalisa_area_5_30.png"
-)
-os.system(
-    "diff solutions/medium/monalisa_delta_025.png output/medium/monalisa_delta_025.png"
-)
+os.system("diff solutions/medium/monalisa_area_5_30.png output/medium/monalisa_area_5_30.png")
+os.system("diff solutions/medium/monalisa_delta_025.png output/medium/monalisa_delta_025.png")
 os.system("diff solutions/medium/moon_area_20_50.png output/medium/moon_area_20_50.png")
 os.system("diff solutions/medium/moon_delta_001.png output/medium/moon_delta_001.png")
 os.system("diff solutions/medium/moon_delta_005.png output/medium/moon_delta_005.png")
